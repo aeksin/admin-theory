@@ -2,6 +2,7 @@
 if [[ $# == 0 ]]
 then 
 	echo "please select the file or run script with -h(--help) flag"
+ 	exit 1
 elif [[ $1 == "-h" || $1 == "--help" ]]
 then
 	echo "this program output even lines of file to out_even.txt, odd to out_odd.txt, and copy of the file to out_orig.txt"
