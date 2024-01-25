@@ -10,8 +10,11 @@ then
 else
 	if [ -f $1 ] 
 	then 
+		#output even lines to out_even.txt
 		sed -n 2~2p $1 > out_even.txt
+		#output odd lines to out_even.txt
 		sed -n 1~2p $1 > out_odd.txt
+		#output copy of the file to out_orig.txt
 		sed -n 1~1p $1 > out_orig.txt
 		exit 0
 	else
