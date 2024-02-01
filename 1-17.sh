@@ -1,8 +1,19 @@
 #!/bin/bash
-if [[ $# == 0 ]]
+
+if [[ ! -p /dev/stdin && ! -t 0 ]]
+then
+		STDIN=$(cat)
+		#output even lines to out_even.txt
+		sed -n 2~2p <<< $STDIN > out_even.txt
+		#output odd lines to out_even.txt
+		sed -n 1~2p <<< $STDIN > out_odd.txt
+		#output copy of the file to out_orig.txt
+		sed -n 1~1p <<< $STDIN > out_orig.txt
+		exit 0
+elif [[ $# == 0 ]]
 then 
 	echo "please select the file or run script with -h(--help) flag"
- 	exit 1
+	exit 1
 elif [[ $1 == "-h" || $1 == "--help" ]]
 then
 	echo "this program output even lines of file to out_even.txt, odd to out_odd.txt, and copy of the file to out_orig.txt"
