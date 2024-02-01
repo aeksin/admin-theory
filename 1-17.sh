@@ -1,6 +1,15 @@
 #!/bin/bash
-
-if [[ ! -p /dev/stdin && ! -t 0 ]]
+if [[ -p /dev/stdin ]]
+then
+	STDIN=$(cat)
+	#output even lines to out_even.txt
+	sed -n 2~2p <<< $STDIN > out_even.txt
+	#output odd lines to out_even.txt
+	sed -n 1~2p <<< $STDIN > out_odd.txt
+	#output copy of the file to out_orig.txt
+	sed -n 1~1p <<< $STDIN > out_orig.txt
+	exit 0
+elif [[ ! -p /dev/stdin && ! -t 0 ]]
 then
 		STDIN=$(cat)
 		#output even lines to out_even.txt
